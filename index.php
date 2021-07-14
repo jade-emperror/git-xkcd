@@ -112,7 +112,7 @@ if(isset($_POST['submit']))
         <span class=\"main-msg\">click the below button to subscribe</span>
         <br>
         <span class=\"sub-msg\">if the msg is received mistakenly kindly ignore it,you will not be registered without clicking the link below.</span>
-        <form action=\"localhost/php-jade-emperror/validate.php\" method=\"get\">
+        <form action=\"3.142.103.221/git-xkcd/validate.php\" method=\"get\">
             <input type=\"hidden\"  name=\"email\" value=\"$email\">
             <input type=\"hidden\"  name=\"otp\" value=\"$otp\">
             <input class=\"sub-btn\" type=\"submit\" name=\"submit\" value=\"Confirm\">
