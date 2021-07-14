@@ -1,0 +1,100 @@
+*{
+    padding:0px;
+    margin: 0px;
+}
+body{
+    background-image: url('../res/comic_bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    display:flex;
+    flex-direction:column;
+    align-content: space-between;
+}
+.xkcd-logo {
+    padding-top: 1rem;
+    padding-left: 1.4rem;
+    height:fit-content
+}
+.logo{
+    font-family: 'Cinzel', serif;
+    color: rgb(219, 164, 25);
+    font-size: 3rem;
+    letter-spacing: .2rem;
+}
+.form-section{
+    display: flex;
+    flex-direction:column;
+    height: 100vh;
+    align-items:center;
+    justify-content:center;
+    
+}
+.xkcd-desc-cont{
+    margin-top:-10vh;
+    text-align:center;
+    font-family: 'PT Sans', sans-serif;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.xkcd-desc{
+    margin-top:-11vh;
+    font-size: 3rem;
+    color: #E50914;
+    font-weight:700;
+    text-transform:capitalize;
+}
+.xkcd-mini-desc{
+    margin-top: 1vh;
+    margin-bottom:.3vh;
+    width:30vw;
+    font-weight: 400;
+    font-size: 1.7rem;
+    color: black;
+}
+.form-content{
+    margin-top:1.5vh;
+    display:flex;
+    align-content: stretch;
+    width:45vw;
+    height: 8.5vh; 
+}
+#email{
+    width:75%;
+    padding-left: 2rem;
+    font-size:1.2rem;
+
+    border: none;
+}
+#submit-btn{
+    width:25%;
+    font-size:1.2rem;
+    border: none;
+    background-color: #E50914;
+    color: #f2f2f2;
+}
+#submit-btn:hover{
+    cursor:pointer;
+    transform:scale(1.17);
+    transition: .1s;
+}
+#email:focus{
+    outline: none;
+}
+input::placeholder{
+    text-transform:capitalize;
+    font-size:1.2rem;
+    display: flex;
+}
+#error_msg{
+   color:#ff353c;
+   font-size: 1.4rem;
+   font-family: 'PT Sans', sans-serif;
+    text-transform: capitalize;
+    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: .7px;
+    margin-left: 1vw;
+    visibility: hidden;
+}
