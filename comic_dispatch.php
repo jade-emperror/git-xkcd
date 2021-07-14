@@ -17,7 +17,7 @@ $msg = "
     <h4>Comic Published On</h4>
     <p>$data->month / $data->year</p>
 
-    <p>To unsubscribe from the mail subscription,<a href=\"3.142.103.221/git-xkcd/unsubscribe.php?email=%s&submit=Submit\">click here</a></p>
+    <p>To unsubscribe from the mail subscription,<a href=\"3.142.103.221//git-xkcd/unsubscribe.php?email=%s&submit=Submit\">click here</a></p>
 ";
 $title=$data->safe_title;
 $select_active_users = "SELECT email_id From subscription where subscribed = 1";

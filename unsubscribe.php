@@ -11,7 +11,7 @@ if(isset($_GET['submit']))
       }
     
     $querey = mysqli_stmt_init($conn);
-    mysqli_stmt_prepare($querey, "UPDATE subscription set subscribed = 0 WHERE email_id = ?");
+    mysqli_stmt_prepare($querey, "delete from subscription where email_id = ?");
     mysqli_stmt_bind_param($querey, "s", $email);
     mysqli_stmt_execute($querey);
     mysqli_commit($conn);
