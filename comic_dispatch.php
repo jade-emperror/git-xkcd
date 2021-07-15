@@ -1,6 +1,6 @@
 <?php
-error_reporting(0);
 try{
+    if(isset($_GET['otp'])==1)
     $otp=$_GET['otp'];
 }
 catch(Exception $e){
@@ -18,7 +18,8 @@ if(md5(filter_var($otp, FILTER_SANITIZE_STRING))=='7ac7aa2b627b0133a2549cdfcb5a2
     file_put_contents( $img_name,file_get_contents($img_url));
     $mail->addAttachment($img_name,'attachement.jpg');
     $mail->addAttachment($img_name,'attachement.jpg');
-    $msg = "
+    if(isset($_SERVER['HTTP_HOST'])==1)
+    {$msg = "
         <h3>greetings %s,</h3>
         <img src=\"$img_url\" alt = \"comic image\">
         <h4>Transcripts</h4>
@@ -27,11 +28,11 @@ if(md5(filter_var($otp, FILTER_SANITIZE_STRING))=='7ac7aa2b627b0133a2549cdfcb5a2
         <p>$data->month / $data->year</p>
     
         <p>To unsubscribe from the mail subscription,<a href=\"".$_SERVER['HTTP_HOST']."/php-jade-emperror/unsubscribe.php?email=%s&otp=%s&submit=Submit\">click here</a></p>
-    ";
+    ";}
     $title=filter_var($data->safe_title, FILTER_SANITIZE_STRING);
     $select_active_users = "SELECT email_id,otp From subscription where subscribed = 1";
-    
-    if ($res = mysqli_query($conn, $select_active_users)) {
+    $res= mysqli_query($conn, $select_active_users);
+    if ($res) {
         if (mysqli_num_rows($res) > 0) {
             while ($row = mysqli_fetch_array($res)) {
                 $emailid= $row['email_id'];

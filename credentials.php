@@ -1,10 +1,10 @@
 <?php
-$dbhost="localhost";
-$dbuser ="root";
-$dbpwd ="jade1#2";
-$db="xkcd";
-$from_mail_id="thejadeemperror@gmail.com";
-$from_mail_pwd="jadeemperror04";
-$smtp_port=465;
-$smtp_host="smtp.gmail.com"
+$dbhost="host";
+$dbuser ="user";
+$dbpwd ="password";
+$db="database_name";
+$from_mail_id="from@domain.com";
+$from_mail_pwd="password";
+$smtp_port=000;
+$smtp_host="smtp.domain.com";
 ?>
