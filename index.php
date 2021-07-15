@@ -40,7 +40,7 @@ if(isset($_POST['submit']))
     $email=$_POST['emailid'];
     // Removing the illegal characters from email
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-    include('dbconn.php');
+    include 'dbconn.php';
     if (mysqli_connect_errno()) {
         //take somewhere
         exit();
@@ -51,13 +51,12 @@ if(isset($_POST['submit']))
     $querey = mysqli_stmt_init($conn);
     mysqli_stmt_prepare($querey, "INSERT INTO subscription  VALUES (?,?,?)");
     mysqli_stmt_bind_param($querey, "sss", $email,$otp,$sub);
-    include('mailconfigs.php');
-    $flag=FALSE;
+    include 'mailconfigs.php';
     $flag=mysqli_stmt_execute($querey);
   
 if($flag){
     $mail->addAddress($email);
-        $mail->Body = "
+        $msg = "
         <!DOCTYPE html>
     <html lang=\"en\">
     <head>
@@ -107,20 +106,21 @@ if($flag){
             }
         </style>
     </head>
+    ";
+    $msg_form="
     <body>
         
             <span class=\"main-msg\">click the below button to subscribe</span>
             <br>
             <span class=\"sub-msg\">if the msg is received mistakenly kindly ignore it,you will not be registered without clicking the link below.</span>
-            <form action=\"3.142.103.221//git-xkcd/validate.php\" method=\"get\">
-                <input type=\"hidden\"  name=\"email\" value=\"$email\">
-                <input type=\"hidden\"  name=\"otp\" value=\"$otp\">
-                <input class=\"sub-btn\" type=\"submit\" name=\"submit\" value=\"Confirm\">
-            </form>
+            <br>
+            <a class=\"sub-btn\" href=\"%s/php-jade-emperror/validate.php?email=%s&otp=%s&submit=Confirm\">Confirm</a>
       
         </body>
         </html>
         ";
+        $msg_form =sprintf($msg_form,$_SERVER['HTTP_HOST'],$email,strval($otp));
+        $mail->Body =$msg.$msg_form;
         $mail->Subject = ("Verification for XKCD subscription");
     if($mail->send()){
         echo "<script>
