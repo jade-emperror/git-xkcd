@@ -22,3 +22,8 @@ the mailing script discussed earlier is added as a cronjob in the linux machine(
 </p>
 
 <h3> Screenshots from the Project</h3>
+<img src="/readme_res/index.png" alt="index">
+<img src="/readme_res/authentication.png" alt="authentication">
+<img src="/readme_res/thankyou.png" alt="thankyou">
+<img src="/readme_res/mail.png" alt="mail">
+<img src="/readme_res/unsub.png" alt="unsubscribe">
