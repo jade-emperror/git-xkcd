@@ -14,12 +14,13 @@ if(isset($_GET['submit']))
         exit();
       }
     
-    $querey = mysqli_stmt_init($conn);
-    mysqli_stmt_prepare($querey, "delete from subscription where email_id = ? and otp = ?");
-    mysqli_stmt_bind_param($querey, "ss", $email,$otp);
-    mysqli_stmt_execute($querey);
+    $query = mysqli_stmt_init($conn);
+    mysqli_stmt_prepare($query, 'delete from subscription where email_id = ? and otp = ?');
+    mysqli_stmt_bind_param($query, 'ss', $email,$otp);
+    mysqli_stmt_execute($query);
     mysqli_commit($conn);
     mysqli_close($conn);
-    header("Location: unsubscribed.html");
+    header('Location: unsubscribed.html');
+    exit();
 } 
 ?>

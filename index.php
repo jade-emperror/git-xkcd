@@ -26,7 +26,7 @@
         <div class="form-reg-cont">
             <form action="index.php" name="form1" method="post">
                 <div class="form-content">
-                    <input type="text" name="emailid" placeholder="email address" id="email" autocomplete="off" onkeydown="validateEmail(document.form1.emailid)">
+                    <input type="email" name="emailid" placeholder="email address" id="email" autocomplete="off" onkeydown="validateEmail(document.form1.emailid)">
                 <input type="submit" name="submit" value="Register" id="submit-btn" >
                 </div>
             </form>
@@ -48,11 +48,11 @@ if(isset($_POST['submit']))
     $otp = md5(rand(1000,9999));
     $sub = 0;
     //inserting data into DB
-    $querey = mysqli_stmt_init($conn);
-    mysqli_stmt_prepare($querey, "INSERT INTO subscription  VALUES (?,?,?)");
-    mysqli_stmt_bind_param($querey, "sss", $email,$otp,$sub);
+    $query = mysqli_stmt_init($conn);
+    mysqli_stmt_prepare($query, 'INSERT INTO subscription  VALUES (?,?,?)');
+    mysqli_stmt_bind_param($query, 'sss', $email,$otp,$sub);
     include 'mailconfigs.php';
-    $flag=mysqli_stmt_execute($querey);
+    $flag=mysqli_stmt_execute($query);
   
 if($flag){
     $mail->addAddress($email);
@@ -65,7 +65,7 @@ if($flag){
         <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
         <link href=\"https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=PT+Sans:ital,wght@0,700;1,400&display=swap\" rel=\"stylesheet\">   
     
-        <title>Document</title>
+        <title>XKCD - Verification Form</title>
         <style>
             body{
                 width:100vw;
@@ -112,7 +112,7 @@ if($flag){
         
             <span class=\"main-msg\">click the below button to subscribe</span>
             <br>
-            <span class=\"sub-msg\">if the msg is received mistakenly kindly ignore it,you will not be registered without clicking the link below.</span>
+            <span class=\"sub-msg\">if the msg is received mistakenly kindly ignore it, you will not be registered without clicking the link below.</span>
             <br>
             <a class=\"sub-btn\" href=\"%s/php-jade-emperror/validate.php?email=%s&otp=%s&submit=Confirm\">Confirm</a>
       
@@ -123,53 +123,30 @@ if($flag){
         $mail->Body =$msg.$msg_form;
         $mail->Subject = ("Verification for XKCD subscription");
     if($mail->send()){
-        echo "<script>
+        echo '<script>
         alert(\"check your mail for verification\");
-        </script>";
+        </script>';
     }
     else
     {
-        echo "<script>
+        echo '<script>
         alert(\"Server Error\");
-        </script>";
+        </script>';
     }
 }
     //emailing authentication to subscribet
     
     else{
-        echo "<script>
+        echo '<script>
         alert(\"check your inbox mail is already sent\");
-        </script>";
+        </script>';
 
     }
 
     
     //header("Location: validate.php");
-    exit();
+    //exit();
 } 
 ?>
 </body>
-<script>
-    
-    function validateEmail(email) {
-        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{1,}))$/;
-        
-        if(re.test(email.value.toLowerCase()))
-        {
-            document.getElementById("error_msg").style.visibility="hidden";
-            var btn = document.getElementById("submit-btn");
-            btn.style.backgroundColor="#E50914";
-            btn.disabled=false;
-            }
-        else
-        {
-        document.getElementById("error_msg").style.visibility="visible";
-        var btn = document.getElementById("submit-btn");
-        btn.style.backgroundColor="#404040";
-        btn.disabled=true;
-        }
-        }
-</script>
-
-
 </html>
