@@ -55,7 +55,6 @@ if(isset($_POST['submit']))
     $flag=mysqli_stmt_execute($query);
   
 if($flag){
-    $mail->addAddress($email);
         $msg = "
         <!DOCTYPE html>
     <html lang=\"en\">
@@ -113,16 +112,19 @@ if($flag){
             <span class=\"main-msg\">click the below button to subscribe</span>
             <br>
             <span class=\"sub-msg\">if the msg is received mistakenly kindly ignore it, you will not be registered without clicking the link below.</span>
-            <br>
+            <br><br>
             <a class=\"sub-btn\" href=\"%s/php-jade-emperror/validate.php?email=%s&otp=%s&submit=Confirm\">Confirm</a>
       
         </body>
         </html>
         ";
+        $headers = "From: $fromName"." <".$from.">"."\r\n";
+	$headers .= "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
         $msg_form =sprintf($msg_form,$_SERVER['HTTP_HOST'],$email,strval($otp));
-        $mail->Body =$msg.$msg_form;
-        $mail->Subject = ("Verification for XKCD subscription");
-    if($mail->send()){
+        $msg =$msg.$msg_form;
+        $subject = ("Verification for XKCD subscription");
+    if(mail($email,$subject,$msg,$headers)){
         echo '<script>
         alert(\"check your mail for verification\");
         </script>';
