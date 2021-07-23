@@ -113,7 +113,7 @@ if($flag){
             <br>
             <span class=\"sub-msg\">if the msg is received mistakenly kindly ignore it, you will not be registered without clicking the link below.</span>
             <br><br>
-            <a class=\"sub-btn\" href=\"%s/php-jade-emperror/validate.php?email=%s&otp=%s&submit=Confirm\">Confirm</a>
+            <a class=\"sub-btn\" href=\"%s/git-xkcd/validate.php?email=%s&otp=%s&submit=Confirm\">Confirm</a>
       
         </body>
         </html>
